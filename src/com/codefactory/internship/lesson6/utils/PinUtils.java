@@ -5,6 +5,6 @@ public class PinUtils {
 
     //pin validator method
     public static boolean validatePin(int userPin) {
-        return PIN == userPin;
+        return userPin == PIN;
     }
 }
