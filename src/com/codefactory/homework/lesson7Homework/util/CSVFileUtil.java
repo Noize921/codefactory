@@ -4,6 +4,15 @@ import java.io.File;
 
 public class CSVFileUtil {
     public static boolean fileExists(String fileName) {
-        return new File(fileName).exists();
+        File file = null;
+
+        try {
+            file = new File(fileName);
+            return file.exists();
+        } catch (NullPointerException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return false;
     }
 }

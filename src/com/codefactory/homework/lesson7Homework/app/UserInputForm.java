@@ -107,8 +107,15 @@ public class UserInputForm {
                     }
 
                     case "CSV File": {
-                        String fileName = JOptionPane.showInputDialog("Enter file name:").trim();
-                        userDao = (fileName.isEmpty()) ? new CSVUserDaoImpl() : new CSVUserDaoImpl(fileName);
+                        String fileName = null;
+
+                        try {
+                            fileName = JOptionPane.showInputDialog("Enter file name:").trim();
+                        } catch (NullPointerException exc) {
+                            System.err.println(exc.getMessage());
+                        }
+
+                        userDao = (fileName == null) ? new CSVUserDaoImpl() : new CSVUserDaoImpl(fileName);
                         final long userId = Long.parseLong(userIdTextField.getText().trim());
                         final String userFirstName = userFirstNameTextField.getText().trim();
                         final String userLastName = userLastNameTextField.getText().trim();

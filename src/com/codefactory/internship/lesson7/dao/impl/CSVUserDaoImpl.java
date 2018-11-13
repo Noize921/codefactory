@@ -43,6 +43,7 @@ public class CSVUserDaoImpl implements UserDaoIntf {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter((this.userFileName == null) ? FILE_NAME : this.userFileName))) {
             bufferedWriter.write(stringBuilder.toString());
         } catch (IOException e) {
+            String errorMessage = "Sorry, file cannot be opened\nContact administrator and show this message: " + e.getMessage();
             e.printStackTrace();
         }
     }

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InmemoryUserDaoImpl implements UserDaoIntf {
-    List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     @Override
     public void save(User user) {
-        this.users.add(user);
+        users.add(user);
     }
 
     @Override

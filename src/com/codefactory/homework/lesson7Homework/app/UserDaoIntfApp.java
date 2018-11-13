@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class UserDaoIntfApp extends Application {
@@ -61,18 +62,23 @@ public class UserDaoIntfApp extends Application {
         });
 
         viewCSVUsersUsersBtn.setOnAction(e -> {
-            String fileName = JOptionPane.showInputDialog("Enter file name:").trim();
+            String fileName = null;
+
+            try {
+                fileName = JOptionPane.showInputDialog("Enter file name:").trim();
+            } catch (NullPointerException exc) {
+                System.err.println(exc.getMessage());
+            }
 
             if (CSVFileUtil.fileExists(fileName)) {
                 userDao = new CSVUserDaoImpl(fileName);
 
                 UserDisplayWindow.displayUsersInWindow(userDao.findAll());
-            } else if (fileName.isEmpty()) {
+            } else if (fileName == null) {
                 userDao = new CSVUserDaoImpl();
 
                 UserDisplayWindow.displayUsersInWindow(userDao.findAll());
             } else {
-
                 JOptionPane.showMessageDialog(null, "File doesn't exist!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
