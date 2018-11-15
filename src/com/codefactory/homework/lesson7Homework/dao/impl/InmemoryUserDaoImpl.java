@@ -12,11 +12,11 @@ public class InmemoryUserDaoImpl implements UserDaoIntf {
 
     @Override
     public void save(User user) {
-        users.add(user);
+        this.users.add(user);
     }
 
     @Override
     public List<User> findAll() {
-        return users;
+        return this.users;
     }
 }
